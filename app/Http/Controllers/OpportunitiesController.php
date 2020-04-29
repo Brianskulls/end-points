@@ -9,21 +9,15 @@ use \DB;
 class OpportunitiesController extends Controller
 {
 
-//    public function index() {
-//
-//        return view('opportunities-form');
-//
-//    }
-
     public function getOpportunities($account_id) {
 
-        $result = DB::table('opportunities_subscribers')->where('account_id', '=', $account_id)->get();
+        $result = OpportunitiesSubscribers::where('account_id', '=', $account_id)->get();
 
         if (empty($result[0])) {
             return response()->json(['error' => "The resource could not be found"], 404);
         } else {
-            $SubscriberResult = $result->toArray();
-            return response()->json(['result' => $SubscriberResult], 200);
+            $subscriberResult = $result->toArray();
+            return response()->json(['result' => $subscriberResult], 200);
         }
 
     }

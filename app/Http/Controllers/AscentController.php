@@ -17,13 +17,13 @@ class AscentController extends Controller
 
     public function getAscent($account_id) {
 
-        $result = DB::table('ascent_receivers')->where('account_id', '=', $account_id)->get();
+        $result = AscentSubscribers::where('account_id', '=', $account_id)->get();
 
         if (empty($result[0])) {
             return response()->json(['error' => "The resource could not be found"], 404);
         } else {
-            $SubscriberResult = $result->toArray();
-            return response()->json(['result' => $SubscriberResult], 200);
+            $subscriberResult = $result->toArray();
+            return response()->json(['result' => $subscriberResult], 200);
         }
 
     }
